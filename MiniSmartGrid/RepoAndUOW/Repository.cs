@@ -17,6 +17,7 @@ namespace MiniSmartGrid.RepoAndUOW
             Context = context;
         }
 
+
         public void Create(TEntity entity)
         {
             Context.Set<TEntity>().Add(entity);
