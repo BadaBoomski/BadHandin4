@@ -40,7 +40,7 @@ namespace MiniSmartGrid.RepoAndUOW
 
         public TEntity GetByID(int id)
         {
-            throw new NotImplementedException();
+           return Context.Set<TEntity>().Find(id);
         }
     }
 }
