@@ -1,6 +1,6 @@
 using System;
 
-namespace Trader.Models
+namespace TraderInfo.Models
 {
     public class ErrorViewModel
     {
