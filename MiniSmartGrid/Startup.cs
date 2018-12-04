@@ -6,8 +6,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MiniSmartGrid.Interfaces;
+using MiniSmartGrid.Models;
+using MiniSmartGrid.RepoAndUOW;
 
 namespace MiniSmartGrid
 {
@@ -29,6 +33,11 @@ namespace MiniSmartGrid
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            services.AddDbContext<SmartGridDBContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("MiniSmartGridDBString")));
+
+            services.AddTransient<ISmartGridRepo, ISmartGridRepo>();
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
