@@ -37,8 +37,9 @@ namespace MiniSmartGrid
             services.AddDbContext<SmartGridDBContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MiniSmartGridDBString")));
 
-            services.AddTransient<ISmartGridRepo, ISmartGridRepo>;
-            
+
+            services.AddTransient<ISmartGridRepo, SmartGridRepo>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             var connection = @"Server=(localdb)\mssqllocaldb;Database=MiniSmartGridDB;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<SmartGridDBContext>
