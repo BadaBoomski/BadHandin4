@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniSmartGrid", "MiniSmartGrid\MiniSmartGrid.csproj", "{D6C28BDA-22E3-4DF6-928C-462946D36D93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniSmartGrid", "MiniSmartGrid\MiniSmartGrid.csproj", "{D6C28BDA-22E3-4DF6-928C-462946D36D93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trader", "Trader\Trader.csproj", "{E269DCCE-8974-4E36-BB68-0D6175CB5613}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraderInfo", "Trader\TraderInfo.csproj", "{E269DCCE-8974-4E36-BB68-0D6175CB5613}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prosumer", "Prosumer\Prosumer.csproj", "{0A369D19-3355-45B4-A115-A7D7E465A912}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prosumer", "Prosumer\Prosumer.csproj", "{0A369D19-3355-45B4-A115-A7D7E465A912}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
