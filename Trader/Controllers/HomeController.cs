@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Trader.Models;
+using TraderInfo.Models;
 
-namespace Trader.Controllers
+namespace TraderInfo.Controllers
 {
     public class HomeController : Controller
     {

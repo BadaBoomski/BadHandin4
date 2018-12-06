@@ -14,6 +14,6 @@ namespace Prosumer.Models
         {
 
         }
-        public DbSet<Prosumer> Prosumers { get; set; }
+        public DbSet<Prosumer> Prosumers { get; set; }  
     }
 }

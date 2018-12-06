@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace Trader.Models
+namespace TraderInfo.Models
 {
     public class Trader
     {
