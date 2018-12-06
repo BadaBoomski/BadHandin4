@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace TraderInfo.Models
 {
-    public class Trader
+    public class Trade
     {
         [JsonProperty(PropertyName = "id")]
         public string id { get; set; }

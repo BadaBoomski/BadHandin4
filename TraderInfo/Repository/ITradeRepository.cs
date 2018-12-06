@@ -8,7 +8,7 @@ using Document = Microsoft.Azure.Documents.Document;
 
 namespace TraderInfo.Repository
 {
-    public interface ITraderRepository<T> where T : class
+    public interface ITradeRepository<T> where T : class
     {
         Task<IQueryable<T>> GetAllItemsAsync();
         Task<T> GetItemAsync(string id);
