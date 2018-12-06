@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniSmartGrid", "MiniSmartG
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prosumer", "Prosumer\Prosumer.csproj", "{0A369D19-3355-45B4-A115-A7D7E465A912}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraderInfo", "Trader\TraderInfo.csproj", "{5E546217-CF99-42D8-8476-4B37046ABF3F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{0A369D19-3355-45B4-A115-A7D7E465A912}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A369D19-3355-45B4-A115-A7D7E465A912}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A369D19-3355-45B4-A115-A7D7E465A912}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5E546217-CF99-42D8-8476-4B37046ABF3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5E546217-CF99-42D8-8476-4B37046ABF3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5E546217-CF99-42D8-8476-4B37046ABF3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5E546217-CF99-42D8-8476-4B37046ABF3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
