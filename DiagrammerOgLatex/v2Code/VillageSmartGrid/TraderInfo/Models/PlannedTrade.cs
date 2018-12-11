@@ -8,11 +8,8 @@ namespace TraderInfo.Models
 {
     public class PlannedTrade
     {
-        [JsonProperty(PropertyName = "id")]
-        public string id { get; set; }
-
         [JsonProperty(PropertyName = "PlannedTradesID")]
-        public int CurrentTradesID { get; set; }
+        public int PlannedTradesID { get; set; }
 
         [JsonProperty(PropertyName = "ProsumerBuyerID")]
         public int ProsumerBuyerID { get; set; }

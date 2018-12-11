@@ -45,11 +45,11 @@ namespace TraderInfo
 
             services.AddScoped<IAzureDBRepository<Trader>, AzureDBRepository<Trader>>();
             services.AddScoped<IAzureDBRepository<CompletedTradesLog>, AzureDBRepository<CompletedTradesLog>>();
-            //services.AddScoped<IAzureDBRepository<CurrentTrade>, AzureDBRepository<CurrentTrade>>();
-            //services.AddScoped<IAzureDBRepository<PlannedTrade>, AzureDBRepository<PlannedTrade>>();
-            //services.AddScoped<IAzureDBRepository<ProsumerTraderInfo>, AzureDBRepository<ProsumerTraderInfo>>();
-            //services.AddScoped<IAzureDBRepository<ProsumerTradesOffer>, AzureDBRepository<ProsumerTradesOffer>>();
-            //services.AddScoped<IAzureDBRepository<ProsumerTradesSale>, AzureDBRepository<ProsumerTradesSale>>();
+            services.AddScoped<IAzureDBRepository<CurrentTrade>, AzureDBRepository<CurrentTrade>>();
+            services.AddScoped<IAzureDBRepository<PlannedTrade>, AzureDBRepository<PlannedTrade>>();
+            services.AddScoped<IAzureDBRepository<ProsumerTraderInfo>, AzureDBRepository<ProsumerTraderInfo>>();
+            services.AddScoped<IAzureDBRepository<ProsumerTradesOffer>, AzureDBRepository<ProsumerTradesOffer>>();
+            services.AddScoped<IAzureDBRepository<ProsumerTradesSale>, AzureDBRepository<ProsumerTradesSale>>();
 
         }
 

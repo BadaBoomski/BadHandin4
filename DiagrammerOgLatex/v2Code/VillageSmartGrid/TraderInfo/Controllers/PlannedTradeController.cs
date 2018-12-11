@@ -12,35 +12,35 @@ namespace TraderInfo.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class CompletedTradesLogController : Controller
+    public class PlannedTradeController : Controller
     {
-        private readonly IAzureDBRepository<CompletedTradesLog> _repo;
+        private readonly IAzureDBRepository<PlannedTrade> _repo;
 
-        public CompletedTradesLogController(IAzureDBRepository<CompletedTradesLog> repo)
+        public PlannedTradeController(IAzureDBRepository<PlannedTrade> repo)
         {
             this._repo = repo;
         }
 
         // GET: api/CompletedTradesLog
         [HttpGet]
-        public async Task<IQueryable<CompletedTradesLog>> GetAll()
+        public async Task<IQueryable<PlannedTrade>> GetAll()
         {
             return await _repo.GetAllTradesAsync();
         }
 
         // GET: api/CompletedTradesLog/5
-        [HttpGet("{id}", Name = "GetCompletedTradesLogController")]
+        [HttpGet("{id}", Name = "GetPlannedTrades")]
         public async Task<IActionResult> GetItemByID([FromRoute] int id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            CompletedTradesLog t = await _repo.GetTradeAsync(id.ToString());
+            PlannedTrade t = await _repo.GetTradeAsync(id.ToString());
             if (t == null) return NotFound();
             return Ok(t);
         }
 
         // POST: api/CompletedTradesLog
         [HttpPost]
-        public async Task<IActionResult> PostItem([FromBody] CompletedTradesLog t)
+        public async Task<IActionResult> PostItem([FromBody] PlannedTrade t)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             await _repo.CreateTradeAsync(t);
@@ -49,9 +49,9 @@ namespace TraderInfo.Controllers
 
         // PUT: api/CompletedTradesLog/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] CompletedTradesLog t2)
+        public async Task<IActionResult> Put(int id, [FromBody] PlannedTrade t2)
         {
-            var t = _repo.GetTradesAsync(ti => ti.CompletedTradesLogID == id);
+            var t = _repo.GetTradesAsync(ti => ti.PlannedTradesID == id);
             if (!ModelState.IsValid) return BadRequest(ModelState);
             if (t == null) return NotFound();
             await _repo.UpdateTradeAsync(id.ToString(), t2);
@@ -63,7 +63,7 @@ namespace TraderInfo.Controllers
         public async Task<IActionResult> Delete([FromRoute] string id)
         {
             if (!ModelState.IsValid) return BadRequest();
-            CompletedTradesLog t = await _repo.GetTradeAsync(id);
+            PlannedTrade t = await _repo.GetTradeAsync(id);
             if (t == null) return NotFound();
             await _repo.DeleteTradeAsync(id);
             return Ok();
