@@ -1,0 +1,50 @@
+@startuml table-domains
+
+!include setup.iuml
+_set class_circle
+_applysetup
+
+
+!define grid (D,#33CCCC) SmartGridInfo
+!define prosumer (D,#00FF00) ProsumerInfo
+!define trader (D,#0000FF) TraderInfo
+
+
+
+
+package "Mini Smart Grid Domain CodeFirst Design" <<Rectangle>> {
+
+    note top of Trader
+    We assume trades and prosumers registration er been done by the same time.
+    end note
+
+
+    class SmartGrid << grid >>
+    {
+        [ PK ] SmartGridID : int
+        ConsumerType : string
+        ProductionType : string
+        Time : DateTime
+    }
+
+    class Prosumer << prosumer >>
+    {
+        [ PK ] ProsumerID : int
+        Consumed : int
+        Produced : int
+        TheDifferents : int
+        Type : string
+    }
+
+    class Trader << trader >>
+    {
+        [ PK ] TraderID : int
+        ConsumerID : int
+        ProducedID : int
+        DailyProfit : int
+        AllTimeProfit : int
+        SellRate : int
+        PlantProsume : int
+    }
+}
+@enduml
