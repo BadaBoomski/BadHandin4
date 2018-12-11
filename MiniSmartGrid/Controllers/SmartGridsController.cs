@@ -14,7 +14,6 @@ namespace MiniSmartGrid.Controllers
     [ApiController]
     public class SmartGridsController : ControllerBase
     {
-        private readonly SmartGridDBContext _context;
         private readonly ISmartGridRepo _smartgridRepo;
 
         public SmartGridsController(ISmartGridRepo smartGridRepo)
@@ -22,17 +21,11 @@ namespace MiniSmartGrid.Controllers
             _smartgridRepo = smartGridRepo;
         }
 
-        //public SmartGridsController(SmartGridDBContext context)
-        //{
-        //    _context = context;
-        //}
-
         // GET: api/SmartGrids
         [HttpGet]
         public IEnumerable<SmartGrid> GetSmartGrids()
         {
             return _smartgridRepo.GetAll();
-            //return _context.SmartGrids;
         }
 
         // GET: api/SmartGrids/5
@@ -46,7 +39,6 @@ namespace MiniSmartGrid.Controllers
 
 
             var smartGrid = _smartgridRepo.GetByID(id);
-            //var smartGrid = await _context.SmartGrids.FindAsync(id);
 
             if (smartGrid == null)
             {
@@ -72,23 +64,6 @@ namespace MiniSmartGrid.Controllers
 
             _smartgridRepo.UpdateSmartGrid(smartGrid);
             _smartgridRepo.Save();
-            //_context.Entry(smartGrid).State = EntityState.Modified;
-
-            //try
-            //{
-            //    await _context.SaveChangesAsync();
-            //}
-            //catch (DbUpdateConcurrencyException)
-            //{
-            //    if (!SmartGridExists(id))
-            //    {
-            //        return NotFound();
-            //    }
-            //    else
-            //    {
-            //        throw;
-            //    }
-            //}
 
             return Ok(smartGrid);
         }
@@ -105,9 +80,6 @@ namespace MiniSmartGrid.Controllers
             _smartgridRepo.InsertSmartGrid(smartGrid);
             _smartgridRepo.Save();
 
-            //_context.SmartGrids.Add(smartGrid);
-            //await _context.SaveChangesAsync();
-
             return CreatedAtAction("GetSmartGrid", new { id = smartGrid.SmartGridID }, smartGrid);
         }
 
@@ -122,7 +94,6 @@ namespace MiniSmartGrid.Controllers
 
             var smartGrid = _smartgridRepo.GetByID(id);
 
-            //var smartGrid = await _context.SmartGrids.FindAsync(id);
             if (smartGrid == null)
             {
                 return NotFound();
@@ -130,15 +101,8 @@ namespace MiniSmartGrid.Controllers
 
             _smartgridRepo.RemoveSmartGrid(id);
             _smartgridRepo.Save();
-            //_context.SmartGrids.Remove(smartGrid);
-            //await _context.SaveChangesAsync();
 
             return Ok(smartGrid);
         }
-
-        //private bool SmartGridExists(int id)
-        //{
-        //    return _context.SmartGrids.Any(e => e.SmartGridID == id);
-        //}
     }
 }

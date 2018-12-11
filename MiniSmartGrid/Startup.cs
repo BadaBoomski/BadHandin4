@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MiniSmartGrid.Interfaces;
 using MiniSmartGrid.Models;
 using MiniSmartGrid.RepoAndUOW;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace MiniSmartGrid
 {
@@ -41,7 +42,14 @@ namespace MiniSmartGrid
             services.AddTransient<ISmartGridRepo, SmartGridRepo>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=MiniSmartGridDB;Trusted_Connection=True;ConnectRetryCount=0";
+
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+            });
+
+            var connection = @"Data Source=st-i4dab.uni.au.dk;Initial Catalog=E18I4DABH4Gr13;User ID=E18I4DABH4Gr13;Password=E18I4DABH4Gr13;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             services.AddDbContext<SmartGridDBContext>
                 (options => options.UseSqlServer(connection));
         }
@@ -60,6 +68,17 @@ namespace MiniSmartGrid
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
 
             app.UseMvc(routes =>
             {

@@ -9,6 +9,9 @@ using MiniSmartGrid.RepoAndUOW;
 
 namespace MiniSmartGrid.RepoAndUOW
 {
+
+    // This is pretty much copy/paste from our Handin 3.2 del1, where we had our PersonRepo.cs
+
     public class SmartGridRepo : Repository<SmartGrid>, ISmartGridRepo, IDisposable
     {
         private SmartGridDBContext context;
@@ -20,27 +23,40 @@ namespace MiniSmartGrid.RepoAndUOW
 
         public void RemoveSmartGrid(int id)
         {
-            throw new NotImplementedException();
+            SmartGrid smartGrid = context.SmartGrids.Find(id);
+            context.SmartGrids.Remove(smartGrid);
         }
 
         public void UpdateSmartGrid(SmartGrid mini)
         {
-            throw new NotImplementedException();
+            context.Entry(mini).State = EntityState.Modified;
         }
 
         public void InsertSmartGrid(SmartGrid mini)
         {
-            throw new NotImplementedException();
+            context.SmartGrids.Add(mini);
+        }
+
+        private bool disposed = false;
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                context.Dispose();
+            }
+
+            this.disposed = true;
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            context.SaveChanges();
         }
     }
 }
