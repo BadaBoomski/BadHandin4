@@ -19,21 +19,31 @@ package "Mini Smart Grid Domain CodeFirst Design" <<Rectangle>> {
     end note
 
 
-    class SmartGrid << grid >>
+    class SmartGridProsumersInfoConfig << grid >>
     {
-        [ PK ] SmartGridID : int
+        [ PK ] SmartGridProsumersInfoConfigID : int
+        SmartGridName : string
         ConsumerType : string
         ProductionType : string
-        Time : DateTime
     }
+
+    class TraderInfoConfig << grid >>
+    {
+        [ PK ] TraderInfoConfigID : int
+        [ FK ] SmartGridInfoConfigID : int
+        TraderPeriodLogInHours: int
+        TraderDependingTradesInHours: int
+        ConfigLastUpdated : DateTime
+    }
+
 
     class Prosumer << prosumer >>
     {
         [ PK ] ProsumerID : int
-        Consumed : int
-        Produced : int
-        TheDifferents : int
+        ConsumedkWh : double
+        ProducedkWh : double
         Type : string
+        Timestamp : DateTime
     }
 
     class Trader << trader >>
