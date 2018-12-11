@@ -9,7 +9,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Prosumer.Interface;
 using Prosumer.Models;
+using Prosumer.RepoAndUOW;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Prosumer
 {
@@ -33,7 +36,12 @@ namespace Prosumer
             });
             services.AddDbContext<ProsumerDBContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ProsumerDBString")));
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+            });
 
+            services.AddTransient<IProsumerRepo, ProsumerRepo>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             var connection = @"Server=(localdb)\mssqllocaldb;Database=ProsumerDB;Trusted_Connection=True;ConnectRetryCount=0";
@@ -53,9 +61,14 @@ namespace Prosumer
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+            app.UseSwagger();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                //c.RoutePrefix = string.Empty;
+            });
 
             app.UseMvc(routes =>
             {

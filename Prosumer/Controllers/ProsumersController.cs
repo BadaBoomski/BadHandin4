@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Prosumer.Interface;
 using Prosumer.Models;
 
 namespace Prosumer.Controllers
@@ -14,29 +15,32 @@ namespace Prosumer.Controllers
     public class ProsumersController : ControllerBase
     {
         private readonly ProsumerDBContext _context;
+        private readonly IProsumerRepo _prosumerRepo;
 
-        public ProsumersController(ProsumerDBContext context)
+        public ProsumersController(IProsumerRepo repo)
         {
-            _context = context;
+            _prosumerRepo = repo;
         }
 
         // GET: api/Prosumers
         [HttpGet]
         public IEnumerable<Models.Prosumer> GetProsumers()
         {
-            return _context.Prosumers;
+            return _prosumerRepo.GetAll();
+            //return _context.Prosumers;
         }
 
         // GET: api/Prosumers/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetProsumer([FromRoute] int id)
+        public IActionResult GetProsumer([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var prosumer = await _context.Prosumers.FindAsync(id);
+            var prosumer = _prosumerRepo.GetByID(id);
+            //var prosumer = await _context.Prosumers.FindAsync(id);
 
             if (prosumer == null)
             {
@@ -48,7 +52,7 @@ namespace Prosumer.Controllers
 
         // PUT: api/Prosumers/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProsumer([FromRoute] int id, [FromBody] Models.Prosumer prosumer)
+        public IActionResult PutProsumer([FromRoute] int id, [FromBody] Models.Prosumer prosumer)
         {
             if (!ModelState.IsValid)
             {
@@ -60,66 +64,58 @@ namespace Prosumer.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(prosumer).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProsumerExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            _prosumerRepo.UpdateProsumer(prosumer);
+            _prosumerRepo.Save();
 
             return NoContent();
         }
 
+        //Async example
+        // PUT: api/Prosumers/5
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutProsumer([FromRoute] int id, [FromBody] Prosumer prosumer)
+        //{
+        //    if (!ModelState.IsValid) { return BadRequest(ModelState); }
+        //    if (id != prosumer.ProsumerID) { return BadRequest(); }
+        //    _context.Entry(prosumer).State = EntityState.Modified;
+        //    try { await _context.SaveChangesAsync(); }
+        //    catch (DbUpdateConcurrencyException) { if (!ProsumerExists(id)) { return NotFound(); } else { throw; } }
+        //    return NoContent();
+        //}
+
         // POST: api/Prosumers
         [HttpPost]
-        public async Task<IActionResult> PostProsumer([FromBody] Models.Prosumer prosumer)
+        public IActionResult PostProsumer([FromBody] Models.Prosumer prosumer)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Prosumers.Add(prosumer);
-            await _context.SaveChangesAsync();
-
+            _prosumerRepo.InsertProsumer(prosumer);
+            _prosumerRepo.Save();
             return CreatedAtAction("GetProsumer", new { id = prosumer.ProsumerID }, prosumer);
         }
 
         // DELETE: api/Prosumers/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProsumer([FromRoute] int id)
+        public IActionResult DeleteProsumer([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var prosumer = await _context.Prosumers.FindAsync(id);
+            var prosumer = _prosumerRepo.GetByID(id);
             if (prosumer == null)
             {
                 return NotFound();
             }
 
-            _context.Prosumers.Remove(prosumer);
-            await _context.SaveChangesAsync();
+            _prosumerRepo.RemoveProsumer(id);
+            _prosumerRepo.Save();
 
             return Ok(prosumer);
-        }
-
-        private bool ProsumerExists(int id)
-        {
-            return _context.Prosumers.Any(e => e.ProsumerID == id);
         }
     }
 }
