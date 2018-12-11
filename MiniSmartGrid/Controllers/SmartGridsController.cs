@@ -22,9 +22,9 @@ namespace MiniSmartGrid.Controllers
             _smartgridRepo = smartGridRepo;
         }
 
-        //public SmartGridsController(SmartGridDBContext context)
+        //public SmartGridsController(SmartGridDBContext Context)
         //{
-        //    _context = context;
+        //    _context = Context;
         //}
 
         // GET: api/SmartGrids
@@ -135,10 +135,5 @@ namespace MiniSmartGrid.Controllers
 
             return Ok(smartGrid);
         }
-
-        //private bool SmartGridExists(int id)
-        //{
-        //    return _context.SmartGrids.Any(e => e.SmartGridID == id);
-        //}
     }
 }

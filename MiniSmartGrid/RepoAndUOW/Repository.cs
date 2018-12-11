@@ -5,14 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using MiniSmartGrid.Interfaces;
+using MiniSmartGrid.Models;
 
 namespace MiniSmartGrid.RepoAndUOW
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        protected readonly DbContext Context;
+        protected readonly SmartGridDBContext Context;
 
-        public Repository(DbContext context)
+        public Repository(SmartGridDBContext context)
         {
             Context = context;
         }

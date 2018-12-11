@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MiniSmartGrid.Interfaces;
 using MiniSmartGrid.Models;
 using MiniSmartGrid.RepoAndUOW;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace MiniSmartGrid
 {
@@ -37,6 +38,10 @@ namespace MiniSmartGrid
             services.AddDbContext<SmartGridDBContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MiniSmartGridDBString")));
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+            });
 
             services.AddTransient<ISmartGridRepo, SmartGridRepo>();
 
@@ -57,9 +62,15 @@ namespace MiniSmartGrid
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+            app.UseSwagger();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                //c.RoutePrefix = string.Empty;
+            });
 
             app.UseMvc(routes =>
             {

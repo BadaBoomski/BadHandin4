@@ -11,36 +11,36 @@ namespace MiniSmartGrid.RepoAndUOW
 {
     public class SmartGridRepo : Repository<SmartGrid>, ISmartGridRepo, IDisposable
     {
-        private SmartGridDBContext context;
+        protected new readonly SmartGridDBContext Context;
 
         public SmartGridRepo(SmartGridDBContext context) : base(context)
         {
-            this.context = context;
+            this.Context = context;
         }
 
         public void RemoveSmartGrid(int id)
         {
-            throw new NotImplementedException();
+            Context.SmartGrids.Remove(Context.SmartGrids.Find(id));
         }
 
         public void UpdateSmartGrid(SmartGrid mini)
         {
-            throw new NotImplementedException();
+            Context.Entry(mini).State = EntityState.Modified;
         }
 
         public void InsertSmartGrid(SmartGrid mini)
         {
-            throw new NotImplementedException();
+            Context.SmartGrids.Add(mini);
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Context.Dispose();
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            Context.SaveChanges();
         }
     }
 }
