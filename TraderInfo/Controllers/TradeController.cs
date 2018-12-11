@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using TraderInfo.Models;
 using TraderInfo.Repository;
+using TraderInfo.Models;
 
 namespace TraderInfo.Controllers
 {
@@ -14,16 +14,16 @@ namespace TraderInfo.Controllers
     public class TraderController : Controller
     {
 
-        private ITraderRepository<Trader> tradeRepository;
+        private ITradeRepository<Trade> tradeRepository;
 
-        public TraderController(ITraderRepository<Trader> tradeRepository)
+        public TraderController(ITradeRepository<Trade> tradeRepository)
         {
             this.tradeRepository = tradeRepository;
         }
 
         // GET: api/Trader
         [HttpGet]
-        public async Task<IQueryable<Trader>> GetALL()
+        public async Task<IQueryable<Trade>> GetALL()
         {
             return await tradeRepository.GetAllItemsAsync();
         }
@@ -37,7 +37,7 @@ namespace TraderInfo.Controllers
                 return BadRequest(ModelState);
             }
 
-            Trader trade = await tradeRepository.GetItemAsync(id.ToString());
+            Trade trade = await tradeRepository.GetItemAsync(id.ToString());
 
             if (trade == null)
 
@@ -52,21 +52,21 @@ namespace TraderInfo.Controllers
 
         // POST: api/Trader
         [HttpPost]
-        public async Task<IActionResult> PostItem([FromBody] Trader trader)
+        public async Task<IActionResult> PostItem([FromBody] Trade trade)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            await tradeRepository.CreateItemAsync(trader);
+            await tradeRepository.CreateItemAsync(trade);
 
-            return Ok(trader);
+            return Ok(trade);
         }
 
         // PUT: api/Trader/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(string id, [FromBody] Trader trader)
+        public async Task<IActionResult> Put(string id, [FromBody] Trade trade)
         {
             var t1 = tradeRepository.GetItemsAsync(t => t.id == id);
 
@@ -80,7 +80,7 @@ namespace TraderInfo.Controllers
                 return NotFound();
             }
 
-            await tradeRepository.UpdateItemAsync(id.ToString(), trader);
+            await tradeRepository.UpdateItemAsync(id.ToString(), trade);
 
             return Ok(t1);
 
@@ -95,9 +95,9 @@ namespace TraderInfo.Controllers
                 return BadRequest(ModelState);
             }
 
-            Trader trader = await tradeRepository.GetItemAsync(id);
+            Trade trader = await tradeRepository.GetItemAsync(id);
 
-            if(trader == null)
+            if (trader == null)
             {
                 return NotFound();
             }

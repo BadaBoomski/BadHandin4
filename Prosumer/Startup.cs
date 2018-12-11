@@ -36,7 +36,7 @@ namespace Prosumer
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=DAB4;Trusted_Connection=True;ConnectRetryCount=0";
+            var connection = @"Server=(localdb)\mssqllocaldb;Database=ProsumerDB;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<ProsumerDBContext>
                 (options => options.UseSqlServer(connection));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
