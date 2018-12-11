@@ -25,7 +25,7 @@ namespace TraderInfo.Controllers
         [HttpGet]
         public async Task<IQueryable<Trade>> GetALL()
         {
-            return await tradeRepository.GetAllItemsAsync();
+            return await tradeRepository.GetAllTradesAsync();
         }
 
         // GET: api/Trader/5
@@ -37,7 +37,7 @@ namespace TraderInfo.Controllers
                 return BadRequest(ModelState);
             }
 
-            Trade trade = await tradeRepository.GetItemAsync(id.ToString());
+            Trade trade = await tradeRepository.GetTradeAsync(id.ToString());
 
             if (trade == null)
 
@@ -59,7 +59,7 @@ namespace TraderInfo.Controllers
                 return BadRequest(ModelState);
             }
 
-            await tradeRepository.CreateItemAsync(trade);
+            await tradeRepository.CreateTradeAsync(trade);
 
             return Ok(trade);
         }
@@ -68,7 +68,7 @@ namespace TraderInfo.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(string id, [FromBody] Trade trade)
         {
-            var t1 = tradeRepository.GetItemsAsync(t => t.id == id);
+            var t1 = tradeRepository.GetTradesAsync(t => t.id == id);
 
             if (!ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace TraderInfo.Controllers
                 return NotFound();
             }
 
-            await tradeRepository.UpdateItemAsync(id.ToString(), trade);
+            await tradeRepository.UpdateTradeAsync(id.ToString(), trade);
 
             return Ok(t1);
 
@@ -95,14 +95,14 @@ namespace TraderInfo.Controllers
                 return BadRequest(ModelState);
             }
 
-            Trade trader = await tradeRepository.GetItemAsync(id);
+            Trade trader = await tradeRepository.GetTradeAsync(id);
 
             if (trader == null)
             {
                 return NotFound();
             }
 
-            await tradeRepository.DeleteItemAsync(id);
+            await tradeRepository.DeleteTradeAsync(id);
             return Ok();
         }
     }

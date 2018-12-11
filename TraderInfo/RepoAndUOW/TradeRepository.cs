@@ -9,12 +9,8 @@ using Microsoft.Azure.Documents.Linq;
 
 namespace TraderInfo.Repository
 {
-    public class TradeRepository<T> : ITradeRepository<T> where T : class
+    public partial class TradeRepository<T> : ITradeRepository<T> where T : class
     {
-        private readonly string Endpoint = "https://e18i4dab.documents.azure.com:443";
-        private readonly string Key = "kM87VaX0sSG87AFM2x6LgtUoZ80N6YRumqvnc5TUhyOrH6yoiPHGFpjAEhYeQL1PhRCkN2nKzpNEBifo3mVthw==";
-        private readonly string DatabaseId = "E18I4DABH4Gr13";
-        private readonly string CollectionId = "Gr13Database";
         private DocumentClient client;
 
         public TradeRepository()
@@ -68,7 +64,7 @@ namespace TraderInfo.Repository
             }
         }
 
-        public virtual async Task<IQueryable<T>> GetAllItemsAsync()
+        public virtual async Task<IQueryable<T>> GetAllTradesAsync()
         {
             IDocumentQuery<T> query = client.CreateDocumentQuery<T>(
                 UriFactory.CreateDocumentCollectionUri(DatabaseId, CollectionId),
@@ -85,7 +81,7 @@ namespace TraderInfo.Repository
             return results.AsQueryable();
         }
 
-        public virtual async Task<T> GetItemAsync(string id)
+        public virtual async Task<T> GetTradeAsync(string id)
         {
             try
             {
@@ -105,7 +101,7 @@ namespace TraderInfo.Repository
             }
         }
 
-        public virtual async Task<IEnumerable<T>> GetItemsAsync(Expression<Func<T, bool>> predicate)
+        public virtual async Task<IEnumerable<T>> GetTradesAsync(Expression<Func<T, bool>> predicate)
         {
             IDocumentQuery<T> query = client.CreateDocumentQuery<T>(
                 UriFactory.CreateDocumentCollectionUri(DatabaseId, CollectionId),
@@ -122,17 +118,17 @@ namespace TraderInfo.Repository
             return results;
         }
 
-        public virtual async Task<Document> CreateItemAsync(T item)
+        public virtual async Task<Document> CreateTradeAsync(T item)
         {
             return await client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(DatabaseId, CollectionId), item);
         }
 
-        public virtual async Task<Document> UpdateItemAsync(string id, T item)
+        public virtual async Task<Document> UpdateTradeAsync(string id, T item)
         {
             return await client.ReplaceDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id), item);
         }
 
-        public virtual async Task DeleteItemAsync(string id)
+        public virtual async Task DeleteTradeAsync(string id)
         {
             await client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id));
         }

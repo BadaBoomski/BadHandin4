@@ -10,11 +10,11 @@ namespace TraderInfo.Repository
 {
     public interface ITradeRepository<T> where T : class
     {
-        Task<IQueryable<T>> GetAllItemsAsync();
-        Task<T> GetItemAsync(string id);
-        Task<IEnumerable<T>> GetItemsAsync(Expression<Func<T, bool>> predicate);
-        Task<Document> CreateItemAsync(T item);
-        Task<Document> UpdateItemAsync(string id, T item);
-        Task DeleteItemAsync(string id);
+        Task<IQueryable<T>> GetAllTradesAsync();
+        Task<T> GetTradeAsync(string id);
+        Task<IEnumerable<T>> GetTradesAsync(Expression<Func<T, bool>> predicate);
+        Task<Document> CreateTradeAsync(T item);
+        Task<Document> UpdateTradeAsync(string id, T item);
+        Task DeleteTradeAsync(string id);
     }
 }

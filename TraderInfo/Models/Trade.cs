@@ -10,13 +10,17 @@ namespace TraderInfo.Models
     {
         [JsonProperty(PropertyName = "id")]
         public string id { get; set; }
+
         [JsonProperty(PropertyName = "TraderId")]
         public int TraderID { get; set; }
+
         [JsonProperty(PropertyName = "DailyProfit")]
         public int DailyProfit { get; set; }
+
         [JsonProperty(PropertyName = "AllTimeProfit")]
         public int AllTimeProfit { get; set; }
 
+        [JsonProperty(PropertyName = "SellRate")]
         public int SellRate { get; set; }
     }
 }
