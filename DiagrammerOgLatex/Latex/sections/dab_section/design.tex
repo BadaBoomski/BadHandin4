@@ -37,5 +37,17 @@ traderinfo:
 -prosumertraderinfo
     en række pr prosumer, giver info om totalproduktion og profit og sellrate
 
--completed trades
-    en ny række for hver enkel handel for en given periode
+-completedtradeslog
+    en ny række for hver enkel handel for en given periode, m. køber og sælger samt blokke og pris der er aftalt
+
+-currenttrades
+    igangværende trades, køber id og sælger id, samt pris og andtal kWh blokke, og fra og til stidsstamp
+
+-plannedtrades
+    fremtidige trades, køber id og sælger id, samt stamps fra og til, og antal blokke
+
+-prosumertradessales
+    liste over specielle tilbud fra en prosumer, om en bestemt tidspunkt og antal blokke( f.eks til en billigere pris om natten), bestemt af et tidsmarkør for hvornår folk kan købe til prisen
+
+-prosumertradesoffers
+    antal kWh blokke til salg og pris, men uden tidsperiode/interval
