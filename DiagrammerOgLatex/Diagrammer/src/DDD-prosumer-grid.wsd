@@ -13,7 +13,7 @@ _applysetup
 
 
 package "Village Smart Grid - Domain Driven Design - SmartGrid & Prosumers" <<Rectangle>> {
-    class SmartGrid << grid >>
+    class SmartGrids << grid >>
     {
         [ PK ] SmartGridID : int
         SmartGridInfo : string
@@ -27,10 +27,9 @@ package "Village Smart Grid - Domain Driven Design - SmartGrid & Prosumers" <<Re
         [ PK ] SmartGridProsumersID : int
         [ FK ] SmartGrid : int
         InstallationsID : int
-        SmartMeterID : int
     }
 
-    SmartGridProsumers -up-|> SmartGrid
+    SmartGridProsumers -up-|> SmartGrids
 
     class Prosumers << prosumer >>
     {
