@@ -261,4 +261,5 @@ paket-files/
 __pycache__/
 
 #ignore build directory
-DiagrammerOgLatex/Latex/build/*
+/DiagrammerOgLatex/Latex/build/*
+/DiagrammerOgLatex/Latex/Handin4.synctex(busy)
