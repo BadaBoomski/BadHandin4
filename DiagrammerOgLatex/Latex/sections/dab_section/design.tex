@@ -1,0 +1,53 @@
+% !TeX root = ../../Handin4.tex
+
+\section{Design}
+
+Der er til denne løsning benyttet 1 NoSQL-database og 2 SQL-databaser for at overholde kravet om mindst 1 af hver jf. kravsspec.
+
+\subsection{Entity Relationship Diagram (ERD)}
+
+\subsection{Database Studio Design (DSD)}
+
+\subsection{Domain Drive Design (DDD)}
+
+
+
+\insertfigure{../../../images/diagrammer/DDD-prosumer-grid/ddd-diagram-prosumer-grid.png}{1}{ddd}{Opstilling af DDD-diagram af ProsumerInfo og SmartGridInfo.}
+\insertfigure{../../../images/diagrammer/DDD-trader/ddd-diagram-trader.png}{1}{ddd}{Opstilling af DDD-diagram af TraderInfo.}
+
+
+smartgridinfo:
+-smartgrid
+    info omkring dette grid, antal prosumers m.m, der vil kun være én række
+-smartgridprsoumers
+    info omkring prosumers for hvem der er i dette grip, installations nr m.m
+
+prosumerinfo:
+-prosumers:
+    infoomkring total produktion af kWh blokke
+    stamps for nyeste meter måling 1 række pr rosumer
+-prosumersmartmeterrecordslog
+    tidsstemplede elementer, med prosumer id, for hver gang der er sendt data fra en given elmåler/smartmeter
+
+
+traderinfo:
+-trader
+    info omkring trader delen i forhold til grid, total brug af kWh fra plant(uden for systemet) eller hvis negativ viser den forbrug. 
+
+-prosumertraderinfo
+    en række pr prosumer, giver info om totalproduktion og profit og sellrate
+
+-completedtradeslog
+    en ny række for hver enkel handel for en given periode, m. køber og sælger samt blokke og pris der er aftalt
+
+-currenttrades
+    igangværende trades, køber id og sælger id, samt pris og andtal kWh blokke, og fra og til stidsstamp
+
+-plannedtrades
+    fremtidige trades, køber id og sælger id, samt stamps fra og til, og antal blokke
+
+-prosumertradessales
+    liste over specielle tilbud fra en prosumer, om en bestemt tidspunkt og antal blokke( f.eks til en billigere pris om natten), bestemt af et tidsmarkør for hvornår folk kan købe til prisen
+
+-prosumertradesoffers
+    antal kWh blokke til salg og pris, men uden tidsperiode/interval
