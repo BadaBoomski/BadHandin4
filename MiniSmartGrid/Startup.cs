@@ -38,15 +38,18 @@ namespace MiniSmartGrid
             services.AddDbContext<SmartGridDBContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MiniSmartGridDBString")));
 
+
+            services.AddTransient<ISmartGridRepo, SmartGridRepo>();
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
 
-            services.AddTransient<ISmartGridRepo, SmartGridRepo>();
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=MiniSmartGridDB;Trusted_Connection=True;ConnectRetryCount=0";
+            var connection = @"Data Source=st-i4dab.uni.au.dk;Initial Catalog=E18I4DABH4Gr13;User ID=E18I4DABH4Gr13;Password=E18I4DABH4Gr13;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             services.AddDbContext<SmartGridDBContext>
                 (options => options.UseSqlServer(connection));
         }

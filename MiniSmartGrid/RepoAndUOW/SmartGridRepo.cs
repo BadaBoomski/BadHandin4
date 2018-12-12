@@ -9,6 +9,9 @@ using MiniSmartGrid.RepoAndUOW;
 
 namespace MiniSmartGrid.RepoAndUOW
 {
+
+    // This is pretty much copy/paste from our Handin 3.2 del1, where we had our PersonRepo.cs
+
     public class SmartGridRepo : Repository<SmartGrid>, ISmartGridRepo, IDisposable
     {
         protected new readonly SmartGridDBContext Context;
