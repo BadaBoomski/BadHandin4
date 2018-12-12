@@ -12,3 +12,28 @@
 
 \insertfigure{../../../images/diagrammer/DDD-prosumer-grid/ddd-diagram-prosumer-grid.png}{1}{ddd}{Opstilling af DDD-diagram af ProsumerInfo og SmartGridInfo.}
 \insertfigure{../../../images/diagrammer/DDD-trader/ddd-diagram-trader.png}{1}{ddd}{Opstilling af DDD-diagram af TraderInfo.}
+
+
+smartgridinfo:
+-smartgrid
+    info omkring dette grid, antal prosumers m.m, der vil kun være én række
+-smartgridprsoumers
+    info omkring prosumers for hvem der er i dette grip, installations nr m.m
+
+prosumerinfo:
+-prosumers:
+    infoomkring total produktion af kWh blokke
+    stamps for nyeste meter måling 1 række pr rosumer
+-prosumersmartmeterrecordslog
+    tidsstemplede elementer, med prosumer id, for hver gang der er sendt data fra en given elmåler/smartmeter
+
+
+traderinfo:
+-trader
+    info omkring trader delen i forhold til grid, total brug af kWh fra plant(uden for systemet) eller hvis negativ viser den forbrug. 
+
+-prosumertraderinfo
+    en række pr prosumer, giver info om totalproduktion og profit og sellrate
+
+-completed trades
+    en ny række for hver enkel handel for en given periode
