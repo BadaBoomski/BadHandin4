@@ -1,0 +1,138 @@
+%--------Figurer-----------
+
+\newcommand{\insertfigure}[4]{
+\begin{figure}[H]
+\centering
+  \includegraphics[width=#2\textwidth,keepaspectratio]{/#1}
+  \caption{#4}
+  \figurelabel{#3}
+\end{figure}
+}
+
+%-----------Kildeliste--------------
+
+%Kildeliste makro
+\newcommand{\insertbibliography}[1]{
+  \cleardoublepage\phantomsection
+  \addcontentsline{toc}{section}{#1}
+  \printbibliography \newpage
+}
+
+%-------Labels & Referencer----------
+
+%Label Figure
+\newcommand{\figurelabel}[1]{
+  \label{fig:#1}}
+%Label Table
+\newcommand{\tablelabel}[1]{
+  \label{tab:#1}}
+%Label Section
+\newcommand{\sectionlabel}[1]{
+  \label{sec:#1}}
+%Label Subsection
+\newcommand{\subsectionlabel}[1]{
+  \label{subsec:#1}}
+%Label Listing
+\newcommand{\listinglabel}[1]{
+  \label{lst:#1}}
+%Label Equation
+\newcommand{\equationlabel}[1]{
+  \label{eq:#1}}
+%Label Enumerated List Item
+\newcommand{\itemlabel}[1]{
+  \label{itm:#1}}
+
+%Referencemacro Figure
+\newcommand{\reffigure}[1]{
+  \ref{fig:#1}}
+%Referencemacro Tabel
+\newcommand{\reftable}[1]{
+  \ref{tab:#1}}
+%Referencemacro Section
+\newcommand{\refsec}[1]{
+  \ref{sec:#1}}
+%Referencemacro Subsection
+\newcommand{\refsubsec}[1]{
+  \ref{subsec:#1}}
+%Referencemacro Listing
+\newcommand{\reflisting}[1]{
+  \ref{lst:#1}}
+%Referencemacro Equation
+\newcommand{\refequation}[1]{
+  \ref{eq:#1}}
+%Referencemacro Enumerated List Item
+\newcommand{\refitem}[1]{
+  \ref{itm:#1}}
+
+%----------------Use Cases-----------------------------
+
+%Lister i use cases
+\newlist{ucList}{enumerate}{1}
+\setlist[ucList]{label=\arabic*.,nosep,align=left,leftmargin=*,before=\vspace*{-10pt},after=\vspace*{-10pt},mode=unboxed}
+
+\newlist{condList}{enumerate}{1}
+\setlist[condList]{label=\textbullet,nosep,align=left,leftmargin=*,before=\vspace*{-10pt},after=\vspace*{-10pt},mode=unboxed}
+
+\newcommand{\resetUcList}{\smallskip
+\setcounter{ucListi}{0}}
+
+%Use case tabel enviroments
+\newenvironment{usecase}[2]
+{
+  \begin{table}[H]
+    \caption{Use Case beskrivelse for Use Case #1}
+    \tablelabel{UC#1}
+    \rowcolors{2}{gray!25}{white}
+    \begin{tabular}{ L{120px} | L{\linewidth-180px} }
+      \hline
+      \rowcolor{gray!50}
+      \textbf{Navn} & \textbf{UC#1: #2}\\ [5px]
+      \hline
+}
+{
+      \hline
+    \end{tabular}
+  \end{table}
+}
+
+\newenvironment{usecasecontinued}[2]
+{
+  \begin{table}[H]
+    \caption*{Tabel \reftable{UC#1} - Fortsat: Use Case beskrivelse for Use Case #1}
+    \rowcolors{2}{gray!25}{white}
+    \begin{tabular}{ L{120px} | L{\linewidth-180px} }
+      \hline
+      \rowcolor{gray!50}
+      \textbf{Navn} & \textbf{UC#1: #2}\\ [5px]
+      \hline
+}
+{
+      \hline
+    \end{tabular}
+  \end{table}
+}
+
+% Use case section + tabel makro
+\newenvironment{usecasesection}[2]{
+  \subsubsection{Use Case #1: #2}
+  På Tabel \reftable{UC#1} ses Use Case beskrivelsen for Use Case #1.
+  \begin{usecase}{#1}{#2}
+}
+{
+  \end{usecase}
+}
+
+%Use case tabel rækker
+\newcommand{\ucGoal}[1]{Mål & #1\\}
+\newcommand{\ucInitiering}[1]{Initiering & #1\\}
+\newcommand{\ucActors}[1]{Aktører & #1\\}
+\newcommand{\ucSamtidigeForekomster}[1]{Antal Samtidige Forekomster & #1\\}
+\newcommand{\ucPrecondition}[1]{Prækondition & #1\\}
+\newcommand{\ucPostcondition}[1]{Postkondition & #1\\}
+\newcommand{\ucHovedscenarie}[1]{Hovedscenarie & #1\\}
+\newcommand{\ucUdvidelser}[1]{Udvidelser/undtagelser & #1\\}
+%Undtagelse Item
+\newcommand{\undtagelse}[2]{\item[{[Undtagelse #1: #2]}]}
+
+
+

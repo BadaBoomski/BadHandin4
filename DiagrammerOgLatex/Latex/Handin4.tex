@@ -1,0 +1,45 @@
+% !TeX root = ./Handin4.tex
+\documentclass[a4paper]{article}								%#
+%#################################################################
+%-----------------------------------------------------------------
+% Titlen på dokumentet - vises på forsiden og i sidefoden
+\title{Village Smart Grid}
+
+%#################################################################
+\usepackage{../_global/globalPreamble} % Inkluder preambles		%#
+\usepackage{../_global/macros}									%#
+\usepackage{LocalPreamble}										%#
+%#################################################################
+
+%-----------------------------------------------------------------
+% Sæt data til forside. Kan kommenteres ind efter behov.
+%\newcommand{\frontpageDate}{31/8-2018}
+%\newcommand{\frontpageImage}{customfrontpageimage.png}
+%\newcommand{\frontpageCharacters}{1234567}
+
+%#################################################################
+\begin{document}												%#
+%#################################################################
+
+	%-------------------------------------------------------------
+	% Forside - Kan udkommenteres efter behov
+	\import{../_global/}{frontpage}
+
+	%-------------------------------------------------------------
+	% Indholdsfortegnelse - Kan udkommenteres efter behov
+	\tableofcontents\thispagestyle{fancy} \newpage
+
+	%-------------------------------------------------------------
+	% Selve indholdet
+
+	\import{sections/dab_section/}{indledning} \newpage
+	\import{sections/dab_section/}{design} \newpage
+	\import{sections/dab_section/}{konklusion} \newpage
+
+	%-------------------------------------------------------------
+	% Kildeliste - Kan udkommenteres efter behov
+	\insertbibliography{Kildeliste}
+
+%#################################################################
+\end{document}													%#
+%#################################################################

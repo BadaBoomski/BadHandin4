@@ -1,0 +1,56 @@
+@startuml ddd-diagram-prosumer-grid
+
+!include setup.iuml
+_set class_circle
+_applysetup
+
+
+!define grid (D,#33CCCC) SmartGridInfo
+!define prosumer (D,#00FF00) ProsumerInfo
+!define trader (D,#0000FF) TraderInfo
+
+
+
+
+package "Village Smart Grid - Domain Driven Design - SmartGrid & Prosumers" <<Rectangle>> {
+    class SmartGrids << grid >>
+    {
+        [ PK ] SmartGridID : int
+        SmartGridInfo : string
+        SmartGridRegistration : string
+        TotalProsumersCount : int
+
+    }
+
+    class SmartGridProsumers << grid >>
+    {
+        [ PK ] SmartGridProsumersID : int
+        [ FK ] SmartGrid : int
+        InstallationsID : int
+    }
+
+    SmartGridProsumers -up-|> SmartGrids
+
+    class Prosumers << prosumer >>
+    {
+        [ PK ] ProsumerID : int
+        InstallationsID : int
+        kWhBlocksTotalProduction : int
+        kWhBlocksTotalConsumed : double
+        kWhBlocksLastMeterStamp : double      
+        prosumerCurrencyInBlocks : int
+        ProsumerLastUpdated : DateTime
+    }
+
+    class ProsumerSmartMeterRecordsLog << prosumer >>
+    {
+        [ PK ] ProsumerSmartMeterRecordID : int
+        [ FK ] ProsumerID : int
+        InstallationsID : int
+        kWhBlocksProduced : int
+        kWhBlocksConsumed : int
+        TimeStamp : DateTime
+    }
+    ProsumerSmartMeterRecordsLog -up-|> Prosumers
+}
+@enduml
