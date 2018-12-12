@@ -1,0 +1,94 @@
+@startuml init
+' good reference-> https://deepu.js.org/svg-seq-diagram/Reference_Guide.pdf
+
+!define _set !define
+
+
+' _applysetup macro refers to 'apply' section
+!define _applysetup !include setup.iuml!1
+@enduml
+
+@startuml apply
+
+'default settings
+!define class_bgcolor_default lightyellow
+!define class_bordercolor_default black
+!define note_bgcolor_default #F7F7F7
+!define note_bordercolor_default black
+!define arrow_color_default black
+
+/' 
+    General
+'/
+
+!ifdef monochrome
+skinparam monochrome true
+!endif
+
+!ifdef footer_filename
+    footer %filename%
+!endif
+
+!ifndef arrow_color
+!define arrow_color arrow_color_default
+!endif
+skinparam ArrowColor arrow_color
+
+'scale up output (default png resolution is very pixelated)
+scale 3
+
+
+/' 
+    Class diagrams
+'/
+
+hide empty members
+
+!ifndef class_bgcolor
+!define class_bgcolor class_bgcolor_default
+!endif
+
+!ifndef class_bordercolor
+!define class_bordercolor class_bordercolor_default
+!endif
+
+!ifndef class_circle
+hide circle
+!endif
+
+skinparam class{
+    AttributeIconSize 0
+    FontStyle bold
+    BackgroundColor class_bgcolor
+    BorderColor class_bordercolor
+}
+
+'macros for some stereotypes
+!define _IF <<Interface>>
+!define _ABS <<Abstract>>
+!define _CL <<Class>>
+
+/' 
+    Notes
+'/
+
+!ifndef note_bgcolor
+!define note_bgcolor note_bgcolor_default
+!endif
+
+!ifndef note_bordercolor
+!define note_bordercolor note_bordercolor_default
+!endif
+
+skinparam note{
+    BackgroundColor note_bgcolor_default
+    BorderColor note_bordercolor_default
+}
+
+/' 
+    Sequence
+'/
+
+'hide footbox
+
+@enduml

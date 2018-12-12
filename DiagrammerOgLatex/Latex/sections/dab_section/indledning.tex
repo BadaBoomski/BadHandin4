@@ -1,0 +1,66 @@
+% !TeX root = ../../Handin4.tex
+
+\section{Indledning}
+
+\subsection{Links til Databaser}
+Vi har benyttet samme MS SQL Database, til begge "databaser", da de alligevel kører uafhængigt af hinanden.
+
+\begin{itemize}
+    \item SQL database: 
+    \item Azure DB:
+\end{itemize}
+
+\subsection{Case}
+
+
+
+\subsection{Krav}
+\subsubsection{Problemdomænets definitoner}
+\begin{itemize}
+    \item Databasen Smart Grid Info: indeholder en beskrivels af konfigurationen af det givne Mini Smart Grid.
+    \item Databasen Prosumer Info: indeholder oplysninger og beskrivelse af de "Prosumers" som er med i den given Mini Smart Grid.
+    \item Databasen Trader Info: indeholder oplysninger om, hvorledes der er handlet, hvorledes der handles lige her og nu og hvorledes der skal handles fremover. Tabellen i øverste højre hjørne af billedet er en skematisk beskrivelse af nogle af oplysninger i Trader Info DB.
+    \item Smart Meter: En IOT enhed eller mere konkret en enhed, som måler og opsamler de konkrete data omkring strøm, strømproduktion, strømforbrug og status iøvrigt for den pågældende Prosumer.
+    \item Power Distributor/Smart Grid Trader: Systemet som er forsyningsselskabet bag Mini Smart Grid bruges til at overvåge, styre og kontrollere Smart Grid. Trader delen står for at håndtere de indbyrdes salg mellem de enkelte Prosumers.
+    \item Power Plant: symbolisere en typisk central elforsyning uden for Mini Smart Grid.
+\end{itemize}
+
+\subsubsection{Kravspecifikation}
+
+\begin{itemize}
+    \item Udvikles 3 databaser - Trader Info, Prosumer Info og Smart Grid Info.
+    \item De nævnte databaser skal udstyres med Front End REST API, hvor nødvendige metoder afhænger af interaktionen med resten af systemet.
+    \item MiniSmartGrid i denne opgave kaldes 'Village Smart Grid', til 33 husstande og 12 virksomheder/landbrug.
+    \item Der gælder en række karakteristika, som har relevants for MiniSmartGrid i forhold til hver overordnet type husstands-prosumer og virksomhedsprosumer. Disse skal kunne registreres.
+    \item Afregning skal ske på basis af kWh-blokke. Smart Meter måler her og nu strøm og spænding på Prosumers elstik.
+    \item Differenesen mellem ind- og udgående blokke aflæses i forhold til en given tidsperiode kaldte afregningsvinduet.
+    \item Der er en "bryder" mellem "The Village Smart Grid" og resten af Danmark. 
+    \item Resten af Danmark skal  betagtes som en et stort Smart Grid 'The National Smart Grid'.
+    \item Hver Prosumer i Mini Smart Grid er kendt via sin kobberforbindelse (sit elstik), sine karakteristika og sit Smart Meter.
+    \item Afregningsprincip et det princip som Prosumers bruger til at afregne kWh-blokke indbyrdes.
+    \item Der kan inddrages et salgsvindue eller et købsvindue, hvor et salgsvindue er den tid og det tidsum en prosummer vil stille/stiller en mængde kWh-blokke til rådighed, og hvor et købsvindue er det er den tid og det tidsrum en prosumer vil købe kWh.blokke.
+    \item I et givent afregninsgsvindue gælder en bestem pris for en kWh-blok. Hvis priserne for en kWh-blok ønskes dynamiske i forhold til et bestemt elmarked gøres aflæsningsvinduet kortere men ønskes en mere fast afregningsstruktur gøre afregningsvinduet længere.
+    \item En Prosumer har mulighed for selv at bestemme, hvor mange kWh-blokke, der ønskes købt eller solgt, samt hvilke købs- og salgsvinduer der er gældende.
+    \item Alle handler afsluttede, igangværende og kommende kendte handler skal registreres.
+    \item Alle afregninger der er gennemført , under gennemførelse og som er kendt til at ville blive gennemført, skal registreres.
+\end{itemize}
+
+
+\subsubsection{Tekniske Krav}
+
+\begin{itemize}
+    \item Den tekniske  platform der udvikles på er Microsoft .NET. Nyeste gældende versioner.
+    \item Enten .NET Standard eller .NET Core eller et miks af begge. 
+    \item ADO.NET Entity Framework, EF eller EF Core, benyttes mod SQL databaser. Nyeste gældende versioner.
+    \item Azure Cosmos DB SQL API .NET benyttes Dokumentdatabaser. Nyeste gældende version.
+    \item Der må gerne udvikles en eller flere testklienter som bruger de udviklede REST API'er.
+    \item Tilsvarende må Swagger Swashbukle tilføjes REST API servererne for test af REST API.
+    \item Tilsvarende med predefinerede request der sendes via REST klienter som Postman REST Client eller Advanced Rest Client må bruges.
+    \item Der udvikles på SQL Express LocalDB og Azure CosmosDB SQL API Emulator.
+\end{itemize}
+
+\subsection{Arbejdsfordeling}
+
+Efter at gruppen har kigget og undersøgt opgaven nærmere, er der besluttet at vi deler opgaven op således at vi har en mand på hver database udover dokumentdatabasen TraderInfo, hvor vi har valgt at sætte 2 mand på, da vi mente at det var der som vil være mest arbejde at lave.
+
+

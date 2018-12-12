@@ -1,0 +1,74 @@
+% !TeX root = ../../Handin4.tex
+%*******************************************************************************
+%	Tabeller
+%*******************************************************************************
+\subsection{Tabeller}
+
+\subsubsection{Eksempeltabel}
+
+\begin{table}[H] %H står for "Here" så skal altid med
+    \caption{text til tabel øverst}
+    \centering
+    % \reftableinput{tabel1}
+\begin{tabular}{|l|l|l|}
+    \hline
+    \rowcolor{blue!25}
+    \textbf{Studienummer} & \textbf{Navn} & \textbf{Studieretning} \\ [2pt]
+    \hline
+    Studienummer & Fornavn Efternavn & IKT \\
+    \hline
+    Studienummer & Fornavn Efternavn & IKT \\
+    \hline
+    Studienummer & Fornavn Efternavn & IKT \\
+    \hline
+    Studienummer & Fornavn Efternavn & IKT \\
+    \hline
+    Studienummer & Fornavn Efternavn & IKT \\
+    \hline
+    Studienummer & Fornavn Efternavn & IKT \\
+    \hline
+    Studienummer & Fornavn Efternavn & IKT \\
+    \hline
+    Studienummer & Fornavn Efternavn & IKT \\
+    \hline
+\end{tabular}
+\caption{text til tabel nederst}
+\end{table}
+\begin{verbatim}
+    \begin{table}[H] %H står for "Here" så skal altid med
+        \caption{text til tabel øverst}
+        \centering
+        \label{tabel:tabel1}
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \rowcolor{blue!25}
+        \textbf{Studienummer} & \textbf{Navn} & \textbf{Studieretning} \\ [2pt]
+        \hline
+        Studienummer & Fornavn Efternavn & IKT \\
+        \hline
+        Studienummer & Fornavn Efternavn & IKT \\
+        \hline
+        Studienummer & Fornavn Efternavn & IKT \\
+        \hline
+        Studienummer & Fornavn Efternavn & IKT \\
+        \hline
+        Studienummer & Fornavn Efternavn & IKT \\
+        \hline
+        Studienummer & Fornavn Efternavn & IKT \\
+        \hline
+        Studienummer & Fornavn Efternavn & IKT \\
+        \hline
+        Studienummer & Fornavn Efternavn & IKT \\
+        \hline
+    \end{tabular}
+    \caption{text til tabel nederst}
+    \end{table}
+\end{verbatim}
+
+\subsubsection{Referencer til Tabeller}
+\begin{verbatim}
+
+Tabellen fra forrige afsnit med halv bredde er tabel \reftable{tabel1}
+\end{verbatim}
+
+Tabellen fra forrige afsnit med halv bredde er tabel \reftable{tabel1}

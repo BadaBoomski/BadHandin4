@@ -1,0 +1,87 @@
+@startuml ddd-diagram-trader
+
+!include setup.iuml
+_set class_circle
+_applysetup
+
+
+!define grid (D,#33CCCC) SmartGridInfo
+!define prosumer (D,#00FF00) ProsumerInfo
+!define trader (D,#0000FF) TraderInfo
+
+
+
+
+package "Village Smart Grid - Domain Driven Design - TraderInfo" <<Rectangle>> {
+    class Trader << trader >>
+    {
+        [ PK ] TraderID : int
+        PlantProsumekWhBlocks : int
+        PlantProsumeFromTime : DateTime
+        LastUpdated : DateTime
+    }
+    
+    class ProsumerTraderInfo << trader >>
+    {
+        [ PK ] ProsumerID : int
+        DailyProfit : int
+        AllTimeProfit : int
+        SellRate : int
+        
+    }
+
+    class CompletedTradesLog << trader >>
+    {
+        CompletedTradesID : int
+        ProsumerBuyerID : int
+        ProsumerSellerID : int
+        ProsumeTradeFromTime : DateTime
+        ProsumeTradeToTime : DateTime
+        kWhBlocks : int
+        TradeOccuredAt : DateTime
+        kWhBlockPrice : double
+    }
+    
+    class CurrentTrades << trader >>
+    {
+        CurrentTradesID : int
+        ProsumerBuyerID : int
+        ProsumerSellerID : int
+        ProsumeTradeFromTime : DateTime
+        ProsumeTradeToTime : DateTime
+        kWhBlocks : int
+        TradeOccuredAt : DateTime
+        kWhBlockPrice : double
+    }
+    
+    class PlannedTrades << trader >>
+    {
+        PlannedTradesID : int
+        ProsumerBuyerID : int
+        ProsumerSellerID : int
+        ProsumeTradeFromTime : DateTime
+        ProsumeTradeToTime : DateTime
+        kWhBlocks : int
+        TradeOccuredAt : DateTime
+        kWhBlockPrice : double
+    }
+
+    class ProsumerTradesOffers << trader >>
+    {
+        ProsumerTradesOffersID : int
+        ProsumerSellerID : int
+        kWhBlocks : int
+        kWhBlockPrice : double
+    } 
+
+    class ProsumerTradesSales << trader >>
+    {
+        ProsumerTradeSalesID : int
+        ProsumerSellerID : int
+        OfferFromTime : DateTime
+        OfferToTime : DateTime
+        kWhBlocks : int
+        kWhBlockPrice : double
+    }  
+}
+@enduml
