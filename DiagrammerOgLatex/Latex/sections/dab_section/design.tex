@@ -12,9 +12,33 @@ Gruppen har valgt at lade Traderdatabasen være NoSQL, da dokumentdatabasen blev
 
 \subsection{Domain Drive Design (DDD)}
 
+I vores DDD har vi lavet 2 diagrammer, hvor der i det ene er vores Smartgrid og Prosumer, mens der i  den anden er vores Trader.
 
+I det første diagram, SmartGrid er der 2 klasser, hhv. SmartGrid og SmartGridProsumer. SmartGrid indeholder udover en PK også information om den valgte smartgrid og hvor mange prosumers, der er.
 
+SmartGridProsumers inderholder info omkring prosumers for hvem, der er i dette grid. Blandt andet deres InstallationsID og SmartMeterID.
+
+I Prosumers findes ligeledes 2 klasser, hhv. Prosumers og ProsumersSmartMeterRecoresLog.
+Den første indeholder udover et ProsumerID bl.a. info omkring total produktion og total forbrug af kWh-blokke. Den anden klasse indeholder tidsstemplede elementer med prosumerID for hver gang, der sendes data fra en given elmåler/smartmeter.
 \insertfigure{../../../images/diagrammer/DDD-prosumer-grid/ddd-diagram-prosumer-grid.png}{1}{ddd}{Opstilling af DDD-diagram af ProsumerInfo og SmartGridInfo.}
+
+
+I det andet diagram findes der noget flere klasser, da det er en del mere kompleks. Vi vil i det følgende kort beskrive hver klasse:
+\begin{itemize}
+
+\item Trader: info omkring trader-delen ift. grid, total brug af kWh fra plant og hvis den er negativ viser den forbrug.
+\item ProsumerTraderInfo: Hver prosumers info omkring totalproduktion, profit og ”sellrate”.
+\item CompletedTradesLog: En ny række for hver enkel handel for en given periode med køber, sælger og pris for, der er aftalt.
+\item CurrentTrades: Igangværende trades, køberID, sælgerID samt antal kWh blokke og pris.
+\item PlannedTrades: Fremtidige trades, køber- og sælgerID samt stamps fra og til og antal blokke.
+\item ProsumerTradesSales: Liste over specielle tilbud fra en prosumer, det pågældende tidspunkt, antal blokke, bestemt af en tidsmarkør for hvornår folk kan købe til prisen. 
+\item 
+\end{itemize}
+
+
+
+
+    
 \insertfigure{../../../images/diagrammer/DDD-trader/ddd-diagram-trader.png}{1}{ddd}{Opstilling af DDD-diagram af TraderInfo.}
 
 
