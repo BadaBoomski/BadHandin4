@@ -60,5 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="RemoveTables.sql" />
+    <None Include="DeployTables.sql" />
   </ItemGroup>
 </Project>
