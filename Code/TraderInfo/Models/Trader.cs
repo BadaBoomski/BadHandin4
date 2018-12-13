@@ -8,8 +8,8 @@ namespace TraderInfo.Models
 {
     public class Trader
     {
-        [JsonProperty(PropertyName = "TraderID")]
-        public int TraderID { get; set; }
+        [JsonProperty(PropertyName = "id")]
+        public int Id { get; set; }
 
         [JsonProperty(PropertyName = "PlantProsumekWhBlocks")]
         public int PlantProsumekWhBlocks { get; set; }

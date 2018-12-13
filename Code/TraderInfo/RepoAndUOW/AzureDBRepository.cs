@@ -7,13 +7,14 @@ using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.Documents.Linq;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using TraderInfo.Interfaces;
 
 namespace TraderInfo.Repository
 {
     public partial class AzureDBRepository<Trade> : IAzureDBRepository<Trade> where Trade : class
     {
-        private DocumentClient client;
+        private readonly DocumentClient client;
 
         public AzureDBRepository()
         {
@@ -86,22 +87,26 @@ namespace TraderInfo.Repository
 
         public virtual async Task<Trade> GetTradeAsync(string id)
         {
-            try
-            {
-                Document document = await client.ReadDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id));
-                return (Trade)(dynamic)document;
-            }
-            catch (DocumentClientException e)
-            {
-                if (e.StatusCode == System.Net.HttpStatusCode.NotFound)
-                {
-                    return null;
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            Document document = await client.ReadDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id), new RequestOptions() { PartitionKey = new PartitionKey("/dab.trader.PlannedTrades") });
+            return (Trade)(dynamic)document;
+
+            //try
+            //{
+                
+            //    Document document = await client.ReadDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id), new RequestOptions(){ PartitionKey = new PartitionKey("/dab.trader.PlannedTrades") });
+            //    return (Trade)(dynamic)document;
+            //}
+            //catch (DocumentClientException e)
+            //{
+            //    if (e.StatusCode == System.Net.HttpStatusCode.NotFound)
+            //    {
+            //        return null;
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
         }
 
         public virtual async Task<IEnumerable<Trade>> GetTradesAsync(Expression<Func<Trade, bool>> predicate)

@@ -30,7 +30,7 @@ namespace TraderInfo.Controllers
 
         // GET: api/CompletedTradesLog/5
         [HttpGet("{id}", Name = "GetProsumerTradesOffer")]
-        public async Task<IActionResult> GetItemByID([FromRoute] int id)
+        public async Task<IActionResult> GetItemByID([FromRoute] string id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             ProsumerTradesOffer t = await _repo.GetTradeAsync(id.ToString());
@@ -49,7 +49,7 @@ namespace TraderInfo.Controllers
 
         // PUT: api/CompletedTradesLog/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] ProsumerTradesOffer t2)
+        public async Task<IActionResult> Put(string id, [FromBody] ProsumerTradesOffer t2)
         {
             var t = _repo.GetTradesAsync(ti => ti.ProsumerTradesOffersID == id);
             if (!ModelState.IsValid) return BadRequest(ModelState);

@@ -30,10 +30,10 @@ namespace TraderInfo.Controllers
 
         // GET: api/CompletedTradesLog/5
         [HttpGet("{id}", Name = "GetProsumerTraderInfo")]
-        public async Task<IActionResult> GetItemByID([FromRoute] int id)
+        public async Task<IActionResult> GetItemByID([FromRoute] string id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            ProsumerTraderInfo t = await _repo.GetTradeAsync(id.ToString());
+            ProsumerTraderInfo t = await _repo.GetTradeAsync(id);
             if (t == null) return NotFound();
             return Ok(t);
         }

@@ -29,11 +29,11 @@ namespace TraderInfo.Controllers
         }
 
         // GET: api/CompletedTradesLog/5
-        [HttpGet("{id}", Name = "GetPlannedTrades")]
-        public async Task<IActionResult> GetItemByID([FromRoute] int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetItemByID([FromRoute] string id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            PlannedTrade t = await _repo.GetTradeAsync(id.ToString());
+            var t = await _repo.GetTradeAsync(id);
             if (t == null) return NotFound();
             return Ok(t);
         }
@@ -49,7 +49,7 @@ namespace TraderInfo.Controllers
 
         // PUT: api/CompletedTradesLog/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] PlannedTrade t2)
+        public async Task<IActionResult> Put(string id, [FromBody] PlannedTrade t2)
         {
             var t = _repo.GetTradesAsync(ti => ti.PlannedTradesID == id);
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -63,7 +63,7 @@ namespace TraderInfo.Controllers
         public async Task<IActionResult> Delete([FromRoute] string id)
         {
             if (!ModelState.IsValid) return BadRequest();
-            PlannedTrade t = await _repo.GetTradeAsync(id);
+            var t = await _repo.GetTradeAsync(id);
             if (t == null) return NotFound();
             await _repo.DeleteTradeAsync(id);
             return Ok();

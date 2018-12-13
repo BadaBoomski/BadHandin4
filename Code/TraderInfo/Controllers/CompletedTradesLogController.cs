@@ -32,11 +32,13 @@ namespace TraderInfo.Controllers
         [HttpGet("{id}", Name = "GetCompletedTradesLogController")]
         public async Task<IActionResult> GetItemByID([FromRoute] int id)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-            CompletedTradesLog t = await _repo.GetTradeAsync(id.ToString());
+            //if (!ModelState.IsValid) return BadRequest(ModelState);
+            CompletedTradesLog t = new CompletedTradesLog();
+            t = await _repo.GetTradeAsync(id.ToString());
             if (t == null) return NotFound();
             return Ok(t);
         }
+
 
         // POST: api/CompletedTradesLog
         [HttpPost]
@@ -51,21 +53,22 @@ namespace TraderInfo.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] CompletedTradesLog t2)
         {
-            var t = _repo.GetTradesAsync(ti => ti.CompletedTradesLogID == id);
+            var t = _repo.GetTradesAsync(ti => ti.Id == id);
             if (!ModelState.IsValid) return BadRequest(ModelState);
             if (t == null) return NotFound();
             await _repo.UpdateTradeAsync(id.ToString(), t2);
+
             return Ok(t);
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete([FromRoute] string id)
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
             if (!ModelState.IsValid) return BadRequest();
-            CompletedTradesLog t = await _repo.GetTradeAsync(id);
+            CompletedTradesLog t = await _repo.GetTradeAsync(id.ToString());
             if (t == null) return NotFound();
-            await _repo.DeleteTradeAsync(id);
+            await _repo.DeleteTradeAsync(id.ToString());
             return Ok();
         }
     }

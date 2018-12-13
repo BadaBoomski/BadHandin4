@@ -51,7 +51,7 @@ namespace TraderInfo.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] CurrentTrade t2)
         {
-            var t = _repo.GetTradesAsync(ti => ti.CurrentTradesID == id);
+            var t = _repo.GetTradesAsync(ti => ti.Id == id);
             if (!ModelState.IsValid) return BadRequest(ModelState);
             if (t == null) return NotFound();
             await _repo.UpdateTradeAsync(id.ToString(), t2);
@@ -60,12 +60,12 @@ namespace TraderInfo.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete([FromRoute] string id)
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
             if (!ModelState.IsValid) return BadRequest();
-            CurrentTrade t = await _repo.GetTradeAsync(id);
+            CurrentTrade t = await _repo.GetTradeAsync(id.ToString());
             if (t == null) return NotFound();
-            await _repo.DeleteTradeAsync(id);
+            await _repo.DeleteTradeAsync(id.ToString());
             return Ok();
         }
     }

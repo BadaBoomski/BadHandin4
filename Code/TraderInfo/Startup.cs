@@ -41,12 +41,13 @@ namespace TraderInfo
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+                c.ResolveConflictingActions(api => api.First());
             });
 
-            services.AddScoped<IAzureDBRepository<Trader>, AzureDBRepository<Trader>>();
+            services.AddSingleton<IAzureDBRepository<Trader>, AzureDBRepository<Trader>>();
             services.AddScoped<IAzureDBRepository<CompletedTradesLog>, AzureDBRepository<CompletedTradesLog>>();
             services.AddScoped<IAzureDBRepository<CurrentTrade>, AzureDBRepository<CurrentTrade>>();
-            services.AddScoped<IAzureDBRepository<PlannedTrade>, AzureDBRepository<PlannedTrade>>();
+            services.AddSingleton<IAzureDBRepository<PlannedTrade>, AzureDBRepository<PlannedTrade>>();
             services.AddScoped<IAzureDBRepository<ProsumerTraderInfo>, AzureDBRepository<ProsumerTraderInfo>>();
             services.AddScoped<IAzureDBRepository<ProsumerTradesOffer>, AzureDBRepository<ProsumerTradesOffer>>();
             services.AddScoped<IAzureDBRepository<ProsumerTradesSale>, AzureDBRepository<ProsumerTradesSale>>();

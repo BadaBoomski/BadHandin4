@@ -13,5 +13,6 @@ namespace SmartGridInfo.Models
         public int SmartGridID { get; set; }
         public SmartGrid SmartGrid { get; set; }
         public int InstallationsID { get; set; }
+        public int SmartMeterID { get; set; }
     }
 }
