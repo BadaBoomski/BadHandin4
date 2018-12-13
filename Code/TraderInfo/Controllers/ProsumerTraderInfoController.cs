@@ -49,12 +49,12 @@ namespace TraderInfo.Controllers
 
         // PUT: api/CompletedTradesLog/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] ProsumerTraderInfo t2)
+        public async Task<IActionResult> Put(int id, [FromBody] ProsumerTraderInfo t)
         {
-            var t = _repo.GetTradesAsync(ti => ti.ProsumerID == id);
+            var t1 = _repo.GetTradesAsync(ti => ti.ProsumerID == id);
             if (!ModelState.IsValid) return BadRequest(ModelState);
             if (t == null) return NotFound();
-            await _repo.UpdateTradeAsync(id.ToString(), t2);
+            await _repo.UpdateTradeAsync(id.ToString(), t);
             return Ok(t);
         }
 

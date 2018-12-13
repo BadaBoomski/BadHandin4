@@ -87,26 +87,28 @@ namespace TraderInfo.Repository
 
         public virtual async Task<Trade> GetTradeAsync(string id)
         {
-            Document document = await client.ReadDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id), new RequestOptions() { PartitionKey = new PartitionKey("/dab.trader.PlannedTrades") });
-            return (Trade)(dynamic)document;
+            //Document document = await client.ReadDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id),
+            //    new RequestOptions() { PartitionKey = new PartitionKey("/dab.trader.PlannedTrades") });
+            //return (Trade)(dynamic)document;
 
-            //try
-            //{
-                
-            //    Document document = await client.ReadDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id), new RequestOptions(){ PartitionKey = new PartitionKey("/dab.trader.PlannedTrades") });
-            //    return (Trade)(dynamic)document;
-            //}
-            //catch (DocumentClientException e)
-            //{
-            //    if (e.StatusCode == System.Net.HttpStatusCode.NotFound)
-            //    {
-            //        return null;
-            //    }
-            //    else
-            //    {
-            //        throw;
-            //    }
-            //}
+            try
+            {
+
+                Document document = await client.ReadDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id));
+                /*, new RequestOptions() { PartitionKey = new PartitionKey("/dab.trader.PlannedTrades") });*/
+                return (Trade)(dynamic)document;
+            }
+            catch (DocumentClientException e)
+            {
+                if (e.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    return null;
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
 
         public virtual async Task<IEnumerable<Trade>> GetTradesAsync(Expression<Func<Trade, bool>> predicate)
@@ -125,6 +127,12 @@ namespace TraderInfo.Repository
 
             return results;
         }
+
+        //public virtual async Task<Document> CreateTradeAsync(Trade item)
+        //{
+        //    return await client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(DatabaseId, CollectionId), item);
+        //}
+
 
         public virtual async Task<Document> CreateTradeAsync(Trade item)
         {
