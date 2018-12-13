@@ -15,7 +15,7 @@ _applysetup
 package "Village Smart Grid - Domain Driven Design - TraderInfo" <<Rectangle>> {
     class Trader << trader >>
     {
-        [ PK ] TraderID : int
+        [ id ] TraderID : int
         PlantProsumekWhBlocks : int
         PlantProsumeFromTime : DateTime
         LastUpdated : DateTime
@@ -23,16 +23,16 @@ package "Village Smart Grid - Domain Driven Design - TraderInfo" <<Rectangle>> {
     
     class ProsumerTraderInfo << trader >>
     {
-        [ PK ] ProsumerID : int
-        DailyProfit : int
-        AllTimeProfit : int
-        SellRate : int
+        ProsumerID : int
+        DailyProfit : double
+        AllTimeProfit : double
+        SellRate : double
         
     }
 
     class CompletedTradesLog << trader >>
     {
-        CompletedTradesID : int
+        [ id ] CompletedTradesID : string
         ProsumerBuyerID : int
         ProsumerSellerID : int
         ProsumeTradeFromTime : DateTime
@@ -44,7 +44,7 @@ package "Village Smart Grid - Domain Driven Design - TraderInfo" <<Rectangle>> {
     
     class CurrentTrades << trader >>
     {
-        CurrentTradesID : int
+        [ id ] CurrentTradesID : string
         ProsumerBuyerID : int
         ProsumerSellerID : int
         ProsumeTradeFromTime : DateTime
@@ -56,7 +56,7 @@ package "Village Smart Grid - Domain Driven Design - TraderInfo" <<Rectangle>> {
     
     class PlannedTrades << trader >>
     {
-        PlannedTradesID : int
+        [ id ] PlannedTradesID : string
         ProsumerBuyerID : int
         ProsumerSellerID : int
         ProsumeTradeFromTime : DateTime
@@ -68,7 +68,7 @@ package "Village Smart Grid - Domain Driven Design - TraderInfo" <<Rectangle>> {
 
     class ProsumerTradesOffers << trader >>
     {
-        ProsumerTradesOffersID : int
+        [ id ] ProsumerTradesOffersID : string
         ProsumerSellerID : int
         kWhBlocks : int
         kWhBlockPrice : double
@@ -76,7 +76,7 @@ package "Village Smart Grid - Domain Driven Design - TraderInfo" <<Rectangle>> {
 
     class ProsumerTradesSales << trader >>
     {
-        ProsumerTradeSalesID : int
+        [ id ] ProsumerTradeSalesID : string
         ProsumerSellerID : int
         OfferFromTime : DateTime
         OfferToTime : DateTime

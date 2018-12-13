@@ -13,7 +13,7 @@ _applysetup
 
 
 package "Village Smart Grid - Domain Driven Design - SmartGrid & Prosumers" <<Rectangle>> {
-    class SmartGrids << grid >>
+    class SmartGrid << grid >>
     {
         [ PK ] SmartGridID : int
         SmartGridInfo : string
@@ -22,35 +22,37 @@ package "Village Smart Grid - Domain Driven Design - SmartGrid & Prosumers" <<Re
 
     }
 
-    class SmartGridProsumers << grid >>
+    class SmartGridProsumer << grid >>
     {
-        [ PK ] SmartGridProsumersID : int
-        [ FK ] SmartGrid : int
+        [ Key ] SmartGridProsumersID : int
+        SmartGrid : int
+        SmartGrid : SmartGrid
         InstallationsID : int
     }
 
-    SmartGridProsumers -up-|> SmartGrids
+    SmartGridProsumer -up-|> SmartGrid
 
-    class Prosumers << prosumer >>
+    class Prosumer << prosumer >>
     {
-        [ PK ] ProsumerID : int
+        [ Key ] ProsumerID : int
         InstallationsID : int
         kWhBlocksTotalProduction : int
-        kWhBlocksTotalConsumed : double
-        kWhBlocksLastMeterStamp : double      
+        kWhBlocksTotalConsumed : int
+        kWhBlocksLastMeterStamp : int      
         prosumerCurrencyInBlocks : int
         ProsumerLastUpdated : DateTime
     }
 
     class ProsumerSmartMeterRecordsLog << prosumer >>
     {
-        [ PK ] ProsumerSmartMeterRecordID : int
-        [ FK ] ProsumerID : int
+        [ Key ] ProsumerSmartMeterRecordID : int
+        ProsumerID : int
+        Prosumer : Prosumer
         InstallationsID : int
         kWhBlocksProduced : int
         kWhBlocksConsumed : int
         TimeStamp : DateTime
     }
-    ProsumerSmartMeterRecordsLog -up-|> Prosumers
+    ProsumerSmartMeterRecordsLog -up-|> Prosumer
 }
 @enduml

@@ -9,7 +9,7 @@ namespace TraderInfo.Models
     public class ProsumerTradesOffer
     {
         [JsonProperty(PropertyName = "ProsumerTradesOffersID")]
-        public int ProsumerTradesOffersID { get; set; }
+        public string ProsumerTradesOffersID { get; set; }
 
         [JsonProperty(PropertyName = "ProsumerSellerID")]
         public int ProsumerSellerID { get; set; }

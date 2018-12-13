@@ -8,16 +8,22 @@ namespace TraderInfo.Models
 {
     public class ProsumerTraderInfo
     {
+        [JsonProperty(PropertyName = "id")]
+        public string Id { get; set; }
+
+        [JsonProperty(PropertyName = "ProsumerTraderInfoID")]
+        public string ProsumerTraderInfoID { get; set; }
+
         [JsonProperty(PropertyName = "ProsumerID")]
         public int ProsumerID { get; set; }
 
         [JsonProperty(PropertyName = "DailyProfit")]
-        public int DailyProfit { get; set; }
+        public double DailyProfit { get; set; }
 
         [JsonProperty(PropertyName = "AllTimeProfit")]
-        public int AllTimeProfit { get; set; }
+        public double AllTimeProfit { get; set; }
 
         [JsonProperty(PropertyName = "SellRate")]
-        public int SellRate { get; set; }
+        public double SellRate { get; set; }
     }
 }

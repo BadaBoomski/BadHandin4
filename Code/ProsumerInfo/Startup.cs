@@ -32,7 +32,7 @@ namespace ProsumerInfo
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
 
-            var connection = @"Server=(localdb)\MSSQLLocalDB;Database=DAB4-Prosumer;Trusted_Connection=True;ConnectRetryCount=0";
+            var connection = @"Data Source=st-i4dab.uni.au.dk;Initial Catalog=E18I4DABH4Gr13;User ID=E18I4DABH4Gr13;Password=E18I4DABH4Gr13;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             services.AddDbContext<ProsumerDbContext>(options => options.UseSqlServer(connection));
 
             services.AddSwaggerGen(c =>

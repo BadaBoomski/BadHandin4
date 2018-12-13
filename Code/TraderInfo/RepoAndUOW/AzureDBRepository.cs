@@ -7,17 +7,18 @@ using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.Documents.Linq;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using TraderInfo.Interfaces;
 
 namespace TraderInfo.Repository
 {
     public partial class AzureDBRepository<Trade> : IAzureDBRepository<Trade> where Trade : class
     {
-        private DocumentClient client;
+        private readonly DocumentClient client;
 
         public AzureDBRepository()
         {
-            SetCollectionID();
+            //SetCollectionID();
             this.client = new DocumentClient(new Uri(Endpoint), Key);
             CreateDatabaseIfNotExistsAsync().Wait();
             CreateCollectionIfNotExistsAsync().Wait();
@@ -86,9 +87,15 @@ namespace TraderInfo.Repository
 
         public virtual async Task<Trade> GetTradeAsync(string id)
         {
+            //Document document = await client.ReadDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id),
+            //    new RequestOptions() { PartitionKey = new PartitionKey("/dab.trader.PlannedTrades") });
+            //return (Trade)(dynamic)document;
+
             try
             {
+
                 Document document = await client.ReadDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id));
+                /*, new RequestOptions() { PartitionKey = new PartitionKey("/dab.trader.PlannedTrades") });*/
                 return (Trade)(dynamic)document;
             }
             catch (DocumentClientException e)
@@ -120,6 +127,12 @@ namespace TraderInfo.Repository
 
             return results;
         }
+
+        //public virtual async Task<Document> CreateTradeAsync(Trade item)
+        //{
+        //    return await client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(DatabaseId, CollectionId), item);
+        //}
+
 
         public virtual async Task<Document> CreateTradeAsync(Trade item)
         {

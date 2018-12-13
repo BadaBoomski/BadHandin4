@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartGrid", "MiniSmartGrid\SmartGrid.csproj", "{D6C28BDA-22E3-4DF6-928C-462946D36D93}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prosumer", "Prosumer\Prosumer.csproj", "{0A369D19-3355-45B4-A115-A7D7E465A912}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MiniSmartGridDB", "MiniSmartGridDB\MiniSmartGridDB.sqlproj", "{8BB8BC4D-7BA7-47F9-B896-09F22DAAC025}"
