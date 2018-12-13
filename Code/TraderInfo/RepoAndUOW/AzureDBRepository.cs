@@ -18,7 +18,7 @@ namespace TraderInfo.Repository
 
         public AzureDBRepository()
         {
-            SetCollectionID();
+            //SetCollectionID();
             this.client = new DocumentClient(new Uri(Endpoint), Key);
             CreateDatabaseIfNotExistsAsync().Wait();
             CreateCollectionIfNotExistsAsync().Wait();
