@@ -15,14 +15,21 @@ _applysetup
 package "Village Smart Grid - Domain Driven Design - TraderInfo" <<Rectangle>> {
     class Trader << trader >>
     {
-        [ id ] TraderID : int
+        [ id ] TraderID : string
         PlantProsumekWhBlocks : int
         PlantProsumeFromTime : DateTime
         LastUpdated : DateTime
+        completedTrades : CompletedTradesLog[]
+        currentTrade : CurrentTrade[]
+        plannedTrades : PlannedTrade[]
+        prosumerTraderInfo : ProsumerTraderInfo[]
+        prosumerTradesOffers : ProsumerTradesOffer[]
+        prosumerTradesSales : ProsumerTradesSale[]
     }
     
     class ProsumerTraderInfo << trader >>
     {
+        [ id ] ProsumerTraderInfoID : string
         ProsumerID : int
         DailyProfit : double
         AllTimeProfit : double
@@ -30,9 +37,11 @@ package "Village Smart Grid - Domain Driven Design - TraderInfo" <<Rectangle>> {
         
     }
 
+    Trader <-right- ProsumerTraderInfo
+
     class CompletedTradesLog << trader >>
     {
-        [ id ] CompletedTradesID : string
+        [ id ] CompletedTradeID : string
         ProsumerBuyerID : int
         ProsumerSellerID : int
         ProsumeTradeFromTime : DateTime
@@ -41,8 +50,10 @@ package "Village Smart Grid - Domain Driven Design - TraderInfo" <<Rectangle>> {
         TradeOccuredAt : DateTime
         kWhBlockPrice : double
     }
+
+    Trader <-up- CompletedTradesLog
     
-    class CurrentTrades << trader >>
+    class CurrentTrade << trader >>
     {
         [ id ] CurrentTradesID : string
         ProsumerBuyerID : int
@@ -53,8 +64,9 @@ package "Village Smart Grid - Domain Driven Design - TraderInfo" <<Rectangle>> {
         TradeOccuredAt : DateTime
         kWhBlockPrice : double
     }
+    Trader <-up- CurrentTrade
     
-    class PlannedTrades << trader >>
+    class PlannedTrade << trader >>
     {
         [ id ] PlannedTradesID : string
         ProsumerBuyerID : int
@@ -65,16 +77,16 @@ package "Village Smart Grid - Domain Driven Design - TraderInfo" <<Rectangle>> {
         TradeOccuredAt : DateTime
         kWhBlockPrice : double
     }
-
-    class ProsumerTradesOffers << trader >>
+    Trader <-up- PlannedTrade
+    class ProsumerTradesOffer << trader >>
     {
         [ id ] ProsumerTradesOffersID : string
         ProsumerSellerID : int
         kWhBlocks : int
         kWhBlockPrice : double
     } 
-
-    class ProsumerTradesSales << trader >>
+    Trader <-down- ProsumerTradesOffer
+    class ProsumerTradesSale << trader >>
     {
         [ id ] ProsumerTradeSalesID : string
         ProsumerSellerID : int
@@ -83,5 +95,6 @@ package "Village Smart Grid - Domain Driven Design - TraderInfo" <<Rectangle>> {
         kWhBlocks : int
         kWhBlockPrice : double
     }  
+    Trader <-down- ProsumerTradesSale
 }
 @enduml

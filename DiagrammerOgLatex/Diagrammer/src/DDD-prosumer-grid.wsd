@@ -15,7 +15,7 @@ _applysetup
 package "Village Smart Grid - Domain Driven Design - SmartGrid & Prosumers" <<Rectangle>> {
     class SmartGrid << grid >>
     {
-        [ PK ] SmartGridID : int
+        [ Key ] SmartGridID : int
         SmartGridInfo : string
         SmartGridRegistration : string
         TotalProsumersCount : int
@@ -51,7 +51,7 @@ package "Village Smart Grid - Domain Driven Design - SmartGrid & Prosumers" <<Re
         InstallationsID : int
         kWhBlocksProduced : int
         kWhBlocksConsumed : int
-        TimeStamp : DateTime
+        TimeStampNow : DateTime
     }
     ProsumerSmartMeterRecordsLog -up-> Prosumer
 }
