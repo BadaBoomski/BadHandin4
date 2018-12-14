@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SmartGridInfo.Interfaces;
 using SmartGridInfo.Models;
-using SmartGridInfo.RepoAndUOW;
+using SmartGridInfo.Repo;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace SmartGridInfo

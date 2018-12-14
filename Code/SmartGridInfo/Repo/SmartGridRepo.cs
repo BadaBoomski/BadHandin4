@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore;
 using SmartGridInfo.Interfaces;
 using SmartGridInfo.Models;
 
-namespace SmartGridInfo.RepoAndUOW
+namespace SmartGridInfo.Repo
 {
-    public class SmartGridProsumerRepo : Repository<SmartGridProsumer>, ISmartGridProsumerRepo, IDisposable
+    public class SmartGridRepo : Repository<SmartGrid>, ISmartGridRepo, IDisposable
     {
         protected new readonly SmartGridDbContext Context;
 
-        public SmartGridProsumerRepo(SmartGridDbContext context) : base(context)
+        public SmartGridRepo(SmartGridDbContext context) : base(context)
         {
             Context = context;
         }
@@ -21,14 +21,14 @@ namespace SmartGridInfo.RepoAndUOW
             Context.Dispose();
         }
 
-        public void InsertSmartGridProsumer(SmartGridProsumer t)
+        public void InsertSmartGrid(SmartGrid t)
         {
-            Context.SmartGridProsumers.Add(t);
+            Context.SmartGrids.Add(t);
         }
 
-        public void RemoveSmartGridProsumer(int id)
+        public void RemoveSmartGrid(int id)
         {
-            Context.SmartGridProsumers.Remove(Context.SmartGridProsumers.Find(id));
+            Context.SmartGrids.Remove(Context.SmartGrids.Find(id));
         }
 
         public void Save()
@@ -36,7 +36,7 @@ namespace SmartGridInfo.RepoAndUOW
             Context.SaveChanges();
         }
 
-        public void UpdateSmartGridProsumer(SmartGridProsumer t)
+        public void UpdateSmartGrid(SmartGrid t)
         {
             Context.Entry(t).State = EntityState.Modified;
         }

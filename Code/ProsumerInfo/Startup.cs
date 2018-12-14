@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using ProsumerInfo.Interface;
 using ProsumerInfo.Models;
-using ProsumerInfo.RepoAndUOW;
+using ProsumerInfo.Repo;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace ProsumerInfo

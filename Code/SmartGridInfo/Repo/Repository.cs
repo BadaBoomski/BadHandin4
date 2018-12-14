@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using SmartGridInfo.Models;
 using SmartGridInfo.Interfaces;
 
-namespace SmartGridInfo.RepoAndUOW
+namespace SmartGridInfo.Repo
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {

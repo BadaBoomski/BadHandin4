@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using ProsumerInfo.Interface;
 using ProsumerInfo.Models;
 
-namespace ProsumerInfo.RepoAndUOW
+namespace ProsumerInfo.Repo
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {

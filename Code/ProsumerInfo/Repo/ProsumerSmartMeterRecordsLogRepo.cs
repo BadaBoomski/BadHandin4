@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using ProsumerInfo.Interface;
 using ProsumerInfo.Models;
 
-namespace ProsumerInfo.RepoAndUOW
+namespace ProsumerInfo.Repo
 {
     public class ProsumerSmartMeterRecordsLogRepo : Repository<ProsumerSmartMeterRecordsLog>, IProsumerSmartMeterRecordsLogRepo, IDisposable
     {

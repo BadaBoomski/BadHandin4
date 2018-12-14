@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartGridInfo.Models;
 using SmartGridInfo.Interfaces;
-using SmartGridInfo.RepoAndUOW;
+using SmartGridInfo.Repo;
 
 namespace SmartGridInfo.Controllers
 {
