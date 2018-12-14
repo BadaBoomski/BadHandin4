@@ -33,7 +33,7 @@ Den første indeholder udover et ProsumerID bl.a. info omkring total produktion 
 I det andet diagram findes der nogle flere klasser, da det er en del mere kompleks. Vi vil i det følgende kort beskrive hver klasse:
 \begin{itemize}
 
-\item Trader: info omkring trader-delen ift. grid, total brug af kWh fra plant og hvis den er negativ viser den forbrug.
+\item Trader: info omkring trader-delen ift. grid, total brug af kWh fra plant og hvis den er negativ viser den forbrug. Traderklassen er forbundet til de øvrige klasser, hvorfor der er et objekt eller en liste for hver enkelt af de øvrige klasser i databasen, hvor det har givet mening. Dette særligt, da der er tale om en dokumentdatabase.
 \item ProsumerTraderInfo: Hver prosumers info omkring totalproduktion, profit og ”sellrate”.
 \item CompletedTradesLog: En ny række for hver enkel handel for en given periode med køber, sælger og pris for, der er aftalt.
 \item CurrentTrades: Igangværende trades, køberID, sælgerID samt antal kWh blokke og pris.
