@@ -30,7 +30,7 @@ namespace TraderInfo.Models
         public PlannedTrade[] plannedTrades { get; set; }
 
         [JsonProperty(PropertyName = "ProsumerTradeInfo")]
-        public ProsumerTraderInfo prosumerTraderInfo { get; set; }
+        public ProsumerTraderInfo[] prosumerTraderInfo { get; set; }
 
         [JsonProperty(PropertyName = "ProsumerTradesOffer")]
         public ProsumerTradesOffer[] prosumerTradesOffers { get; set; }
