@@ -6,9 +6,16 @@ Der er til denne løsning benyttet 1 NoSQL-database og 2 SQL-databaser for at ov
 
 Gruppen har valgt at lade Traderdatabasen være NoSQL, da dokumentdatabasen blev vurderet som den mest fleksible, idet den ikke er så låst fast som SQL-databaserne.
 
-\subsection{Entity Relationship Diagram (ERD)}
+I forhold til den indledende fase og design har gruppen ikke valgt at bruge et ERD til at understøtte designet. Gruppen har i stedet i fællesskab tegnet systemet op i hånden og diskuteret, hvorledes klasserne og databaserne skulle opsættes. Det samme gjorde sig ligeledes gældende med Handin 3.2, del2, hvilket virkede fint.
+Skulle man dog overdrage systemet til en anden udvikler eller skulle der ske hurtig refaktorering vil et ERD selvfølgelig være en fin hjælp at have. Og som med så mange andre diagrammer, styrker det forståelsen af systemet.
 
-\subsection{Database Studio Design (DSD)}
+Gruppen har ligeledes hurtigt besluttet - med accept fra underviser Jesper Tørresø - at de 3 databaser ikke nødvendigvis skulle snakke sammen.
+Dette er derfor ikke implementeret i systemet, men vil være en oplagt del at fokusere på i det fremtidige arbejde.
+
+Den tekniske platform er udarbejdet på .NET Core med MVC- og Repository-pattern.
+Der er benyttet Swagger til udarbejdelse af Rest-Api'er. Denne fremfor Postman, da gruppen har bedre erfaringer med Swagger.
+
+Til gennemførelse af gruppens opgave er der taget stor inspiration fra medlemmernes løsning af Handin 3.2, del 1 og del 2.
 
 \subsection{Domain Drive Design (DDD)}
 
@@ -23,7 +30,7 @@ Den første indeholder udover et ProsumerID bl.a. info omkring total produktion 
 \insertfigure{../../../images/diagrammer/DDD-prosumer-grid/ddd-diagram-prosumer-grid.png}{1}{ddd}{Opstilling af DDD-diagram af ProsumerInfo og SmartGridInfo.}
 
 
-I det andet diagram findes der noget flere klasser, da det er en del mere kompleks. Vi vil i det følgende kort beskrive hver klasse:
+I det andet diagram findes der nogle flere klasser, da det er en del mere kompleks. Vi vil i det følgende kort beskrive hver klasse:
 \begin{itemize}
 
 \item Trader: info omkring trader-delen ift. grid, total brug af kWh fra plant og hvis den er negativ viser den forbrug.
@@ -32,7 +39,7 @@ I det andet diagram findes der noget flere klasser, da det er en del mere komple
 \item CurrentTrades: Igangværende trades, køberID, sælgerID samt antal kWh blokke og pris.
 \item PlannedTrades: Fremtidige trades, køber- og sælgerID samt stamps fra og til og antal blokke.
 \item ProsumerTradesSales: Liste over specielle tilbud fra en prosumer, det pågældende tidspunkt, antal blokke, bestemt af en tidsmarkør for hvornår folk kan købe til prisen. 
-\item 
+\item ProsumerTradesOffer: Indeholder prosumerID, antal blokke og deres pris.
 \end{itemize}
 
 
