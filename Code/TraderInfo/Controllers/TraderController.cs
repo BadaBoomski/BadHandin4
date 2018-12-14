@@ -51,7 +51,7 @@ namespace TraderInfo.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(string id, [FromBody] Trader t)
         {
-            var t1 = _repo.GetTradesAsync(tr => tr.Id == id);
+            var t1 = _repo.GetTradesAsync(tr => tr.TraderID == id);
             if (!ModelState.IsValid) return BadRequest(ModelState);
             if (t1 == null) return NotFound();
             await _repo.UpdateTradeAsync(id.ToString(), t);
