@@ -30,7 +30,7 @@ package "Village Smart Grid - Domain Driven Design - SmartGrid & Prosumers" <<Re
         InstallationsID : int
     }
 
-    SmartGridProsumer -up-|> SmartGrid
+    SmartGridProsumer -up-> SmartGrid
 
     class Prosumer << prosumer >>
     {
@@ -53,6 +53,6 @@ package "Village Smart Grid - Domain Driven Design - SmartGrid & Prosumers" <<Re
         kWhBlocksConsumed : int
         TimeStamp : DateTime
     }
-    ProsumerSmartMeterRecordsLog -up-|> Prosumer
+    ProsumerSmartMeterRecordsLog -up-> Prosumer
 }
 @enduml
