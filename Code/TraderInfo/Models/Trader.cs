@@ -9,7 +9,7 @@ namespace TraderInfo.Models
     public class Trader
     {
         [JsonProperty(PropertyName = "id")]
-        public string Id { get; set; }
+        public string TraderID { get; set; }
 
         [JsonProperty(PropertyName = "PlantProsumekWhBlocks")]
         public int PlantProsumekWhBlocks { get; set; }
@@ -26,7 +26,7 @@ namespace TraderInfo.Models
         [JsonProperty(PropertyName = "CurrentTrades")]
         public CurrentTrade[] currentTrade { get; set; }
 
-        [JsonProperty(PropertyName = "FutureTrades")]
+        [JsonProperty(PropertyName = "PlannedTrades")]
         public PlannedTrade[] plannedTrades { get; set; }
 
         [JsonProperty(PropertyName = "ProsumerTradeInfo")]

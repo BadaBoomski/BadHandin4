@@ -9,10 +9,7 @@ namespace TraderInfo.Models
     public class PlannedTrade
     {
         [JsonProperty(PropertyName = "id")]
-        public string Id { get; set; }
-
-        [JsonProperty(PropertyName = "PlannedTradesID")]
-        public int PlannedTradesID { get; set; }
+        public string PlannedTradesID { get; set; }
 
         [JsonProperty(PropertyName = "ProsumerBuyerID")]
         public int ProsumerBuyerID { get; set; }
